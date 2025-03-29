@@ -44,7 +44,7 @@ const ContactForm = () => {
       if (response.ok) {
         setResponseMessage("Message submitted successfully!");
         setIsError(false);
-        setFormData({ name: "", email: "", phone: "", message: "" }); // Clear form
+        setFormData({ name: "", email: "", phone: "", message: "" }); 
       } else {
         setResponseMessage(data.message || "An error occurred.");
         setIsError(true);
