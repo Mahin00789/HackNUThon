@@ -54,6 +54,7 @@ const ContactForm = () => {
       setIsError(true);
     }
   };
+  
 
   return (
     <section className="contact-section">
