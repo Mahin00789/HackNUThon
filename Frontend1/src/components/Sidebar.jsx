@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router';
 import { FaHome, FaCalendarCheck, FaUser, FaBell, FaCloudSunRain, FaSignInAlt } from 'react-icons/fa';
+import { Link } from 'react-router';
 import '../css/sidebar.css';
 
 const Sidebar = ({ expanded, setExpanded }) => {
