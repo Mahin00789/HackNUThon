@@ -8,6 +8,8 @@ import {
   FaFlask,
 } from "react-icons/fa";
 import "../css/home.css";
+import App from "../App";
+import "../CSS/index.css";
 
 // ContactForm Component
 const ContactForm = () => {
@@ -233,6 +235,7 @@ const Home = () => {
 
       {/* Contact Form Component */}
       <ContactForm />
+      <App></App>
     </div>
   );
 };
