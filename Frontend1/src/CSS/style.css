@@ -1,0 +1,56 @@
+/* style.css - Main stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+:root {
+  --dark-green: #4B5945;
+  --medium-green: #66785F;
+  --light-green: #91AC8F;
+  --pale-green: #B2C9AD;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+body {
+  background-color: #f9f9f9;
+}
+
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+  margin-left: 70px; /* Match the width of collapsed sidebar */
+  transition: margin-left 0.3s ease;
+}
+
+.main-content.sidebar-expanded {
+  margin-left: 240px; /* Match the width of expanded sidebar */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .main-content {
+    margin-left: 60px;
+  }
+  
+  .main-content.sidebar-expanded {
+    margin-left: 200px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .main-content {
+    margin-left: 50px;
+  }
+  
+  .main-content.sidebar-expanded {
+    margin-left: 180px;
+  }
+}

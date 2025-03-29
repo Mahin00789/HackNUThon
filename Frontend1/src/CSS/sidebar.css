@@ -1,0 +1,117 @@
+/* sidebar.css */
+.sidebar {
+    height: 100vh;
+    background-color: var(--dark-green);
+    color: white;
+    transition: all 0.3s ease;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .sidebar.collapsed {
+    width: 70px;
+  }
+  
+  .sidebar.expanded {
+    width: 240px;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    background-color: var(--medium-green);
+    margin-bottom: 20px;
+  }
+  
+  .logo-container h2 {
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+  .menu-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu-items li {
+    display: flex;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+  }
+  
+  .menu-items li a {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    width: 100%;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .menu-items li:hover {
+    background-color: var(--medium-green);
+    border-left: 4px solid var(--pale-green);
+  }
+  
+  .menu-items li.active {
+    background-color: var(--medium-green);
+    border-left: 4px solid var(--pale-green);
+  }
+  
+  .icon {
+    font-size: 1.2rem;
+    min-width: 30px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .title {
+    white-space: nowrap;
+    opacity: 1;
+    transition: all 0.3s ease;
+  }
+  
+  .sidebar.collapsed .title {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+  
+  /* Responsive adjustments */
+  @media screen and (max-width: 768px) {
+    .sidebar.expanded {
+      width: 200px;
+    }
+    
+    .sidebar.collapsed {
+      width: 60px;
+    }
+    
+    .logo-container h2 {
+      font-size: 1.2rem;
+    }
+    
+    .icon {
+      font-size: 1rem;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .sidebar.expanded {
+      width: 180px;
+    }
+    
+    .sidebar.collapsed {
+      width: 50px;
+    }
+  }
