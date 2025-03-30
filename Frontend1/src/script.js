@@ -8,11 +8,10 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router";
 import Sidebar from "./components/Sidebar";
 
 // Import pages
-import Home from "./pages/Home";
-import FarmerSignUp from "./components/auth/FarmerSignUp";
-import FarmerSignIn from "./components/auth/FarmerSignIn";
-import AdminSignIn from "./components/auth/AdminSignIn";
-import WeatherDashboard from "./pages/weather";
+import Home from './pages/Home';
+import FarmerSignUp from './components/auth/FarmerSignUp';
+import FarmerSignIn from './components/auth/FarmerSignIn';
+import AdminSignIn from './components/auth/AdminSignIn';
 // import Booking from './pages/Booking';
 // import Dashboard from './pages/Dashboard';
 // import Notifications from './pages/Notifications';
@@ -39,10 +38,6 @@ const App = () => {
             <Route path="/farmer/signup" element={<FarmerSignUp />} />
             <Route path="/login" element={<FarmerSignIn />} />
             <Route path="/admin/login" element={<AdminSignIn />} />
-            <Route
-              path="/weather"
-              element={<WeatherDashboard></WeatherDashboard>}
-            ></Route>
             {/* <Route path="/booking" element={<Booking />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/notifications" element={<Notifications />} />
