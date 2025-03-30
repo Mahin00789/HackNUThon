@@ -1,4 +1,9 @@
-/* Complete revised CSS for auth pages */
+/**
+ * Complete revised CSS for auth pages
+ *
+ * @format
+ */
+
 .auth-page {
   display: flex;
   height: 100vh;
@@ -9,7 +14,7 @@
 
 .auth-image-container {
   flex: 0 0 45%;
-  background-image: url('../assets/Image/farming.jpg');
+  background-image: url("../assets/Image/farming.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -20,7 +25,7 @@
 }
 
 .admin-image {
-  background-image: url('../assets/Image/farming.jpg');
+  background-image: url("../assets/Image/farming.jpg");
 }
 
 .image-overlay {
@@ -72,7 +77,7 @@
 }
 
 .auth-form-container h2 {
-  color: #4B5945;
+  color: #4b5945;
   font-size: 1.8rem;
   margin-bottom: 10px;
   text-align: center;
@@ -80,7 +85,7 @@
 
 .auth-subtitle {
   text-align: center;
-  color: #66785F;
+  color: #66785f;
   margin-bottom: 30px;
   font-size: 1rem;
 }
@@ -100,14 +105,14 @@ label {
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
-  color: #4B5945;
+  color: #4b5945;
   font-size: 0.9rem;
 }
 
 input {
   width: 100%;
   padding: 12px 16px;
-  border: 1px solid #B2C9AD;
+  border: 1px solid #b2c9ad;
   border-radius: 6px;
   font-size: 16px;
   transition: all 0.3s;
@@ -116,7 +121,7 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #66785F;
+  border-color: #66785f;
   box-shadow: 0 0 0 3px rgba(102, 120, 95, 0.2);
   background-color: white;
 }
@@ -137,7 +142,7 @@ input::placeholder {
 }
 
 .forgot-password a {
-  color: #66785F;
+  color: #66785f;
   text-decoration: none;
   font-size: 0.9rem;
 }
@@ -149,7 +154,7 @@ input::placeholder {
 .submit-btn {
   width: 100%;
   padding: 14px;
-  background-color: #4B5945;
+  background-color: #4b5945;
   color: white;
   border: none;
   border-radius: 6px;
@@ -165,7 +170,7 @@ input::placeholder {
 }
 
 .submit-btn:disabled {
-  background-color: #91AC8F;
+  background-color: #91ac8f;
   cursor: not-allowed;
 }
 
@@ -177,7 +182,7 @@ input::placeholder {
 }
 
 .auth-redirect a {
-  color: #4B5945;
+  color: #4b5945;
   text-decoration: none;
   font-weight: 600;
 }
@@ -199,7 +204,7 @@ input::placeholder {
   top: 50%;
   width: 45%;
   height: 1px;
-  background-color: #B2C9AD;
+  background-color: #b2c9ad;
 }
 
 .auth-separator::after {
@@ -209,7 +214,7 @@ input::placeholder {
   top: 50%;
   width: 45%;
   height: 1px;
-  background-color: #B2C9AD;
+  background-color: #b2c9ad;
 }
 
 .auth-separator span {
@@ -218,28 +223,31 @@ input::placeholder {
   background-color: white;
   position: relative;
   z-index: 1;
-  color: #66785F;
+  color: #66785f;
 }
 
-.admin-login-link, .farmer-login-link {
+.admin-login-link,
+.farmer-login-link {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.admin-login-link a, .farmer-login-link a {
-  color: #66785F;
+.admin-login-link a,
+.farmer-login-link a {
+  color: #66785f;
   text-decoration: none;
   font-weight: 500;
   display: inline-block;
   padding: 10px 20px;
-  border: 1px solid #91AC8F;
+  border: 1px solid #91ac8f;
   border-radius: 6px;
   transition: all 0.3s;
 }
 
-.admin-login-link a:hover, .farmer-login-link a:hover {
+.admin-login-link a:hover,
+.farmer-login-link a:hover {
   background-color: #f0f5ee;
-  border-color: #66785F;
+  border-color: #66785f;
 }
 
 /* Custom scrollbar styling */
@@ -253,12 +261,12 @@ input::placeholder {
 }
 
 .auth-form-wrapper::-webkit-scrollbar-thumb {
-  background: #B2C9AD;
+  background: #b2c9ad;
   border-radius: 4px;
 }
 
 .auth-form-wrapper::-webkit-scrollbar-thumb:hover {
-  background: #91AC8F;
+  background: #91ac8f;
 }
 
 /* Responsive design - most problems happen here */
@@ -268,13 +276,13 @@ input::placeholder {
     height: auto;
     overflow: auto;
   }
-  
+
   .auth-image-container {
     flex: 0 0 auto;
     min-height: 200px;
     height: 30vh;
   }
-  
+
   .auth-form-wrapper {
     flex: 1 1 auto;
     height: auto;
@@ -283,16 +291,16 @@ input::placeholder {
     padding: 30px 20px;
     overflow-y: visible;
   }
-  
+
   .form-row {
     flex-direction: column;
     gap: 0;
   }
-  
+
   .welcome-text h1 {
     font-size: 2rem;
   }
-  
+
   .auth-form-container {
     padding: 0;
   }
@@ -303,16 +311,38 @@ input::placeholder {
   .auth-image-container {
     min-height: 150px;
   }
-  
+
   .welcome-text h1 {
     font-size: 1.8rem;
   }
-  
+
   .welcome-text p {
     font-size: 1rem;
   }
-  
+
   .auth-form-wrapper {
     padding: 20px 15px;
   }
+}
+.success-message {
+  color: #28a745;
+  background-color: #d4edda;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #c3e6cb;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  border: 1px solid #f5c6cb;
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
 }

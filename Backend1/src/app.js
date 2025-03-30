@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 import userRouter from "./routes/user.routes.js";
 import contactRoutes from "./routes/contact.routes.js";
 
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/users", userRouter);
 app.use("/api/v1", contactRoutes);
 
 app.use((err, req, res, next) => {

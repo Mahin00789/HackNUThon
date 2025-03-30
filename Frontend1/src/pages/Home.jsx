@@ -27,7 +27,7 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setResponseMessage(""); // Reset message before new request
+    setResponseMessage(""); 
     setIsError(false);
 
     try {

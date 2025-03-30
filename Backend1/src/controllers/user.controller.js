@@ -26,18 +26,9 @@ const generateAccessAndRefreshToken = async (userId) => {
 const registerUser = asyncHandler(async (req, res) => {
   console.log("Received files:", req.files);
 
-  const { firstname, lastname, email, village, district, state, pincode, password } = req.body;
+  const { firstname, lastname, email, village, pincode, password } = req.body;
 
-  if (
-    !firstname ||
-    !lastname ||
-    !email ||
-    !village ||
-    !district ||
-    !state ||
-    !pincode ||
-    !password
-  ) {
+  if (!firstname || !lastname || !email || !phone || !village || !pincode || !password) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -49,10 +40,9 @@ const registerUser = asyncHandler(async (req, res) => {
     firstname,
     lastname,
     email,
+    phone,
     password,
     village,
-    district,
-    state,
     pincode,
   });
 
@@ -67,7 +57,7 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
   if (!email) {
-    throw new ApiError(400, "Username or Email not provided");
+    throw new ApiError(400, "Email not provided");
   }
 
   const user = await User.findOne({ email });
@@ -106,7 +96,7 @@ const loginUser = asyncHandler(async (req, res) => {
     );
 });
 
-const logOutUser = asyncHandler(async (req, res) => {
+const logoutUser = asyncHandler(async (req, res) => {
   const { userId } = req.body;
   if (!userId) {
     throw new ApiError(400, "User ID is required");
@@ -124,7 +114,7 @@ const logOutUser = asyncHandler(async (req, res) => {
     .status(200)
     .clearCookie("accessToken")
     .clearCookie("refreshToken")
-    .json(new ApiResponse(200, null, "User logged out successfully"));
+    .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
-export { registerUser, loginUser, logOutUser };
+export { registerUser, loginUser, logoutUser,generateAccessAndRefreshToken };

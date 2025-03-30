@@ -4,7 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse.js";
 import { Contact } from "../model/contact.model.js";
 
 const submitContactForm = asyncHandler(async (req, res) => {
-  // console.log("sample");
+
   const { name, email, phone, message } = req.body;
   console.log(req.body);
   if (!name || !email || !phone || !message) {
