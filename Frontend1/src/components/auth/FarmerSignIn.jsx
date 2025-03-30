@@ -1,35 +1,75 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import { Link } from 'react-router';
-import '../../CSS/auth.css';
-// import farmImage from '../../assets/farm-image.jpg'; // Add this image to your assets folder
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router"; // Fixed import
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import "../../CSS/auth.css";
 
 const FarmerSignIn = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   const validationSchema = Yup.object({
-    email: Yup.string().email('Invalid email address').required('Email is required'),
-    password: Yup.string().required('Password is required')
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string().required("Password is required"),
   });
 
   const formik = useFormik({
     initialValues: {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     },
     validationSchema,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       setIsLoading(true);
-      // Simulate API call
-      setTimeout(() => {
-        console.log('Form submitted:', values);
+      setError(null);
+      setSuccess(false);
+
+      try {
+        const response = await fetch(
+          "http://localhost:7000/api/v1/users/login",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          }
+        );
+
+        const data = await response.json();
+        
+        if (!response.ok || !data.success) {
+          throw new Error(data.message || "Login failed");
+        }
+
+        // Store authentication data
+        if (data.data && data.data.accessToken) {
+          localStorage.setItem('accessToken', data.data.accessToken);
+          localStorage.setItem('refreshToken', data.data.refreshToken);
+          
+          // Store user data (without sensitive info)
+          if (data.data.user) {
+            localStorage.setItem('userData', JSON.stringify(data.data.user));
+          }
+        }
+
+        console.log("Login Successful");
+        setSuccess(true);
+
+        // Wait for 1.5 seconds before navigating
+        setTimeout(() => {
+          navigate("/farmer/dashboard");
+        }, 1500);
+      } catch (error) {
+        setError(error.message);
+      } finally {
         setIsLoading(false);
-        navigate('/farmer/dashboard');
-      }, 1000);
-    }
+      }
+    },
   });
 
   return (
@@ -45,7 +85,14 @@ const FarmerSignIn = () => {
         <div className="auth-form-container">
           <h2>Farmer Login</h2>
           <p className="auth-subtitle">Enter your credentials to continue</p>
-          
+
+          {error && <div className="error-message">{error}</div>}
+          {success && (
+            <div className="success-message">
+              Login Successful! Redirecting...
+            </div>
+          )}
+
           <form onSubmit={formik.handleSubmit}>
             <div className="form-group">
               <label htmlFor="email">Email Address</label>
@@ -62,7 +109,7 @@ const FarmerSignIn = () => {
                 <div className="error">{formik.errors.email}</div>
               ) : null}
             </div>
-            
+
             <div className="form-group">
               <label htmlFor="password">Password</label>
               <input
@@ -84,18 +131,19 @@ const FarmerSignIn = () => {
             </div>
 
             <button type="submit" className="submit-btn" disabled={isLoading}>
-              {isLoading ? 'Signing In...' : 'Sign In'}
+              {isLoading ? "Signing In..." : "Sign In"}
             </button>
           </form>
-          
+
           <div className="auth-redirect">
-            Don't have an account? <Link to="/farmer/signup">Create Account</Link>
+            Don't have an account?{" "}
+            <Link to="/farmer/signup">Create Account</Link>
           </div>
-          
+
           <div className="auth-separator">
             <span>or</span>
           </div>
-          
+
           <div className="admin-login-link">
             <Link to="/admin/login">Login as Administrator</Link>
           </div>

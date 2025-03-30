@@ -29,7 +29,7 @@ const ContactForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setResponseMessage(""); 
+    setResponseMessage(""); // Reset message before new request
     setIsError(false);
 
     try {

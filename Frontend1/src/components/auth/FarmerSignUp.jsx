@@ -1,16 +1,19 @@
 /** @format */
 
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate } from "react-router";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "../../CSS/auth.css";
 
 const FarmerSignUp = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
+  const [redirectToLogin, setRedirectToLogin] = useState(false);
+
+
 
   const validationSchema = Yup.object({
     firstname: Yup.string().required("First name is required"),
@@ -62,7 +65,7 @@ const FarmerSignUp = () => {
         console.log("Submitting payload:", payload);
 
         const response = await fetch(
-          "http://localhost:2780/api/v1/users/register",
+          "http://localhost:7000/api/v1/users/register",
           {
             method: "POST",
             headers: {
@@ -82,6 +85,10 @@ const FarmerSignUp = () => {
 
         console.log("Registration response:", data);
         setSuccess("Registration successful! Redirecting to login...");
+
+        setTimeout(() => {
+          setRedirectToLogin(true);
+        }, 1500);
       } catch (err) {
         console.error("Registration error:", err);
         if (err.name === "ValidationError") {
@@ -101,6 +108,7 @@ const FarmerSignUp = () => {
 
   return (
     <div className="auth-page">
+      {redirectToLogin && <Navigate to="/login" />}
       <div className="auth-image-container">
         <div className="image-overlay"></div>
         <div className="welcome-text">
@@ -314,7 +322,7 @@ const FarmerSignUp = () => {
           </form>
 
           <div className="auth-redirect">
-            Already have an account? <Link to="/farmer/login">Sign In</Link>
+            Already have an account? <Link to="/login">Sign In</Link>
           </div>
 
           <div className="auth-separator">
