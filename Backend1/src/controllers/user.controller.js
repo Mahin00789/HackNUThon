@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asynchandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { User } from "../model/user.model.js";
+import User from "../model/user.model.js"; 
 import { uploadOnCloudinary } from "../utils/clodinary.js";
 
 const generateAccessAndRefreshToken = async (userId) => {
@@ -26,9 +26,9 @@ const generateAccessAndRefreshToken = async (userId) => {
 const registerUser = asyncHandler(async (req, res) => {
   console.log("Received files:", req.files);
 
-  const { firstname, lastname, email, village, pincode, password } = req.body;
+  const { firstname, lastname, email, village, pincode, password, phone, role } = req.body;
 
-  if (!firstname || !lastname || !email || !phone || !village || !pincode || !password) {
+  if (!firstname || !lastname || !email || !phone || !village || !pincode || !password || !role) {
     throw new ApiError(400, "All fields are required");
   }
 
@@ -44,6 +44,7 @@ const registerUser = asyncHandler(async (req, res) => {
     password,
     village,
     pincode,
+    role,
   });
 
   const createdUser = await User.findById(user._id).select("-password -refreshToken");
@@ -98,6 +99,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
 const logoutUser = asyncHandler(async (req, res) => {
   const { userId } = req.body;
+  console.log("hhh",req.body);
   if (!userId) {
     throw new ApiError(400, "User ID is required");
   }
@@ -117,4 +119,4 @@ const logoutUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, {}, "User logged out successfully"));
 });
 
-export { registerUser, loginUser, logoutUser,generateAccessAndRefreshToken };
+export { registerUser, loginUser, logoutUser, generateAccessAndRefreshToken };
